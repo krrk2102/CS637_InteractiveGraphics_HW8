@@ -1,0 +1,29 @@
+This is homework 8 for Interactive Computer Graphics, by Shangqi Wu.
+
+This program is developed with the virtual machine provided by this course. 
+
+To compile this program, please use the makefile and type "make" in command line. Executable file will be named "hw8". Command "make clean" can remove the executable file.
+
+To run this program, please type "./hw8" in command line. This program asks you to type 3 input smf files, e.g., you can type "bound-cow.smf" for 3 times. I have packed some smf file in this tar file. please type the name of file you want. For better parallel projection, if you want to test with other smf file from website, please use files whose names start with "bound-". This program successfully fulfills all requirements in the homework instructions.  
+
+Default view: 
+Once 3 input files are successfully loaded, it will generate a window with black background with objects in the center. It performs perspective projection and render with anti-aliasing, while camera starts from the front of the object (0, 0, 2). There is 1 while light source, attached slightly behind the camera. 
+3 objects are lined up from left to right. The first one is cyan, second one is magenta, and the third one is yellow. Once it is picked, its color will change to red, with phong shading. By clicking at the black background, all objects will change to their original colors. 
+
+Note about AA:
+Anti-aliasing is done by multisample frame buffer object. Some platforms are not compatible with this approach, such like virtual machine provided. However, I tried GL_POLYGON_SMOOTH (enabled at line 682~684 in hw8.cpp), GL_MULTISAMPLE_ARB (enabled at line 698 in hw8.cpp), in the virtual machine, Mac OSX and Windows 8, those approaches don't work on any platform. 
+My approach can work with native Windows 8, latest glut and glew, a laptop with Core i7 mobile 4500U without external graphics card. The code can perform 8xMSAA. 
+The platform it doesn't work are: virtual machine in VirtualBox or Vmware, native Mac OSX with Core i5 quad core for desktop without external graphics card. No MSAA supported on these platforms. 
+
+Menu instruction: 
+There are 4 submenus, one is for turning on/off multisample anti-aliasing, selecting which color buffer to be displayed, starting/stopping camera and light rotation, and changing projection mode between perspective and parallel. You can make desired change by clicking menu options. For selecting color buffer to be displayed, it is convenient to inspect the status of both 2 buffers.
+
+Keyboard instruction:
+Camera control:
+'w': Increase height of camera.
+'s': Decrease height of camera.
+'a': Increase orbit radius of camera, i.e., the objects look smaller.
+'d': Decrease orbit radius of camera, i.e., the objects look larger.
+'e': Rotate camera rotation counter-clockwise, while the objects inside the window rotate clockwise.
+'q': Rotate camera rotation clockwise, while the objects inside the window rotate counter-clockwise. 
+
